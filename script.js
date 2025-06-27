@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const fetch = require("node-fetch");
 const path = require("path");
+const fs = require("fs");
 const app = express();
 
 app.use(cors());
@@ -34,7 +35,6 @@ app.post("/generate-portfolio", async (req, res) => {
       }
     );
     const data = await response.json();
-    console.log("response", data);
     let portfolio = data.candidates[0].content.parts[0].text;
 
     // Remove markdown fences if present
@@ -42,6 +42,16 @@ app.post("/generate-portfolio", async (req, res) => {
       .replace(/^```html\\n?/i, "")
       .replace(/```$/, "")
       .trim();
+
+    // Save generated portfolio to ./generated directory
+    const generatedDir = path.join(__dirname, "generated");
+    if (!fs.existsSync(generatedDir)) {
+      fs.mkdirSync(generatedDir);
+    }
+    const safeName =
+      name.replace(/[^a-z0-9]/gi, "_").toLowerCase() || "portfolio";
+    const filePath = path.join(generatedDir, `${safeName}_${Date.now()}.html`);
+    fs.writeFileSync(filePath, portfolio);
 
     res.json({ portfolio });
   } catch (error) {
