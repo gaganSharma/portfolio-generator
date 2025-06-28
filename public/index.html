@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI-Driven Portfolio Generator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-card">
+        <h1>AI Portfolio Generator</h1>
+        <form id="portfolioForm">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input
+              id="name"
+              type="text"
+              placeholder="e.g., John Doe"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              placeholder="e.g., john@example.com"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="skills">Skills (comma-separated)</label>
+            <input
+              id="skills"
+              type="text"
+              placeholder="e.g., JavaScript, Python, React"
+            />
+          </div>
+          <div class="form-group">
+            <label for="projects">Projects (brief description)</label>
+            <textarea
+              id="projects"
+              placeholder="e.g., Built a task manager with React and Node.js"
+            ></textarea>
+          </div>
+          <button id="submitBtn" type="submit">Generate Portfolio</button>
+        </form>
+        <div id="result" class="result" style="display: none">
+          <h2>Generated Portfolio</h2>
+          <a id="portfolioLink" href="#" target="_blank"
+            >Open Portfolio in New Tab</a
+          >
+        </div>
+        <div id="error" class="error"></div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

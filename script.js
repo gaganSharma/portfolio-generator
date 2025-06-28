@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 5173; // Use API key from .env
 
 // Serve index.html at root
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 app.post("/generate-portfolio", async (req, res) => {
