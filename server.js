@@ -13,6 +13,9 @@ require("dotenv").config();
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY; // Use API key from .env
 const PORT = process.env.PORT || 5173; // Use API key from .env
 
+// Serve static files from public directory
+app.use(express.static(path.join(__dirname, "public")));
+
 // Serve index.html at root
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
